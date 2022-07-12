@@ -5,6 +5,7 @@ import CustomSlider from '../components/CustomSlider';
 import {useDispatch,useSelector} from 'react-redux'
 import cityActions from '../redux/actions/cityActions'
 import Hero from '../components/Hero';
+import Cities from './Cities';
 
 
 export default function Home() {
@@ -29,7 +30,10 @@ export default function Home() {
 				<Text style={styles.title}  numberOfLines={1}>Popular MyTineraries</Text>
 				<StatusBar style="auto" />
 				<View>
-				<CustomSlider data={cities} />
+					<CustomSlider data={cities} />
+			</View>
+			<View style={{backgroundColor: '#111827', width: Dimensions.get('window').width, height:Dimensions.get('window').height/2}}>
+				
 			</View>
 			</ScrollView>
 	)
