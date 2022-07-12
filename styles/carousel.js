@@ -4,6 +4,8 @@ const { width: screenWidth } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     paddingTop: 30,
+    paddingBottom: 30,
+
   },
   item: {
     width: '100%',

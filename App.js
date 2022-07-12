@@ -1,23 +1,16 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, ScrollView, Image, View } from 'react-native';
-import CustomSlider from './components/CustomSlider';
-import data from './components/data'
+import React from 'react'
+import Home from "./screens/Home";
+import { Provider } from 'react-redux';
+import {configureStore}	 from '@reduxjs/toolkit'
+import mainReducer from './redux/reducers/mainReducer';
 
 export default function App() {
+	const reduxReducer = configureStore({reducer: mainReducer})
+
   return (
-    <ScrollView style={styles.container}>
-      <Image source={require('./assets/home_background.jpg')} />
-      <StatusBar style="auto" />
-			<View>
-      <CustomSlider data={data} />
-    </View>
-    </ScrollView>
+		<Provider store={reduxReducer}>
+   		<Home />
+		</Provider>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#f8f0c9',
-  }
-});

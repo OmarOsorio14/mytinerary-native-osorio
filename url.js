@@ -1,0 +1,1 @@
+export const url = 'https://mytinerary-osorio-back.herokuapp.com/'
