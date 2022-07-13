@@ -2,14 +2,41 @@ import React, {useState} from 'react'
 import { StyleSheet, Text, Button, View, TextInput, Pressable} from 'react-native';
 import Logo from '../components/Logo';
 import GoogleLogIn from '../components/GoogleLogIn';
-export default function Login() {
+export default function SignUp() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [confrimPassword, setConfirmPassword] = useState("");
+	const [username, setUsername] = useState("");
+	const [firstName, setFirstName] = useState("");
+	const [lastName, setLastName] = useState("");
+	const [photo, setPhoto] = useState("");
+
+
+
+
 
 
 	return (
 		<View style={styles.container}>
 			<Logo />
+			<TextInput
+        style={styles.form}
+        onChangeText={setUsername}
+        value={username}
+        placeholder="Username"
+      />
+			<TextInput
+        style={styles.form}
+        onChangeText={setFirstName}
+        value={firstName}
+        placeholder="First Name"
+      />
+			<TextInput
+        style={styles.form}
+        onChangeText={setLastName}
+        value={lastName}
+        placeholder="Last Name"
+      />
 			<TextInput
         style={styles.form}
         onChangeText={setEmail}
@@ -23,15 +50,28 @@ export default function Login() {
         placeholder="Password"
 				secureTextEntry={true}
       />
+				<TextInput
+        style={styles.form}
+        onChangeText={setConfirmPassword}
+        value={confrimPassword}
+        placeholder="Confirm Password"
+				secureTextEntry={true}
+      />
+			<TextInput
+        style={styles.form}
+        onChangeText={setPhoto}
+        value={photo}
+        placeholder="Photo Url"
+      />
 			<Button
-        title="Log In"
+        title="Sing Up"
         onPress={() => Alert.alert('Simple Button pressed')}
 				color="#111827"      
 			/>
 			<View style={styles.textContainer}>
-				<Text style={styles.text}>Don't have an account?</Text>
+				<Text style={styles.text}>do you already have an account created?</Text>
 				<Pressable onPress={() => alert('hola')}>
-					<Text style={styles.link}>Sign Up</Text>		
+					<Text style={styles.link}>Log In</Text>		
 				</Pressable>
 			</View>
 			

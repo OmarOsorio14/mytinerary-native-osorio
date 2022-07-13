@@ -1,5 +1,4 @@
 import axios from "axios";
-import toast from 'react-hot-toast';
 import {url} from '../../url'
 
 const itineraryActions = {
@@ -12,7 +11,7 @@ const itineraryActions = {
 		giveLikeOrDislike: (id)=>{
 			return async(dispatch, getState) => {
 				if(id==="not logged"){
-					toast.error("for this action you must be logged in first")
+					return "for this action you must be logged in first"
 				}else{
 					const token = localStorage.getItem('token')
 					const res = await axios.put(`${url}api/itineraries/like/${id}`, {}, {
@@ -26,9 +25,9 @@ const itineraryActions = {
 		AddComment: (data)=>{
 			return async(dispatch, getState) => {
 				if(data==="not logged"){
-					toast.error("for this action you must be logged in first")
+					return "for this action you must be logged in first"
 				}else if(data.message.length === 0){
-					toast.error("please enter a message")
+					return "please enter a message"
 				}
 				else{
 					const token = localStorage.getItem('token')
@@ -38,9 +37,9 @@ const itineraryActions = {
 									}
 						})
 					if(res.data.success){
-						toast.success("thanks for comment")
+						return "thanks for comment"
 					}else{
-						toast.error("something went wrong try again later")
+						return "something went wrong try again later"
 					}
 				}	
 			}
@@ -49,9 +48,9 @@ const itineraryActions = {
 		UpdateComment: (data)=>{
 			return async(dispatch, getState) => {
 				if(data==="not logged"){
-					toast.error("for this action you must be logged in first")
+					return "for this action you must be logged in first"
 				}else if(data.message.length === 0){
-					toast.error("please enter a new message valid")
+					return "please enter a new message valid"
 				}else{
 				const token = localStorage.getItem('token')
 				const res = await axios.put(`${url}api/itineraries/comment`, {data}, {
@@ -60,9 +59,9 @@ const itineraryActions = {
 								}
 					})
 				if(res.data.success){
-					toast.success(res.data.message)
+					return res.data.message
 				}else{
-					toast.error(res.data.message)
+					return res.data.message
 				}
 				}	
 			}
@@ -76,9 +75,9 @@ const itineraryActions = {
 								}
 					})
 					if(res.data.success){
-						toast.success("comment deleted successfully")
+						return "comment deleted successfully"
 					}else{
-						toast.error("something went wrong try again later")
+						return "something went wrong try again later"
 					}
 				}	
 			}

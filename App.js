@@ -5,6 +5,7 @@ import {configureStore}	 from '@reduxjs/toolkit'
 import mainReducer from './redux/reducers/mainReducer';
 import Cities from './screens/Cities';
 import Login from './screens/Login';
+import SignUp from './screens/SignUp';
 
 export default function App() {
 	const reduxReducer = configureStore({reducer: mainReducer})
@@ -13,7 +14,8 @@ export default function App() {
 		<Provider store={reduxReducer}>
    		{/*<Home />*/}
 			{/*<Cities />*/}
-			<Login />
+			{/*<Login />*/}
+			<SignUp/>
 		</Provider>
   );
 }
