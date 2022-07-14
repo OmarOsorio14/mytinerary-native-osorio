@@ -1,5 +1,4 @@
 import React from 'react'
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, ScrollView, View, ImageBackground, Dimensions} from 'react-native';
 import CustomSlider from '../components/CustomSlider';
 import {useSelector} from 'react-redux'
@@ -15,7 +14,7 @@ export default function Home() {
 					<Hero />
     		</ImageBackground>
 				<Text style={styles.title}  numberOfLines={1}>Popular MyTineraries</Text>
-				<StatusBar style="auto" />
+				
 				<View>
 					<CustomSlider data={cities} />
 			</View>

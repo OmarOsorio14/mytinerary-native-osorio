@@ -1,10 +1,14 @@
 import React, {useEffect, useState} from 'react'
-import { StyleSheet, Text, ScrollView, ImageBackground, Dimensions, View, TextInput} from 'react-native';
+import { StyleSheet, Text, ScrollView, ImageBackground, Dimensions, View, TextInput, TouchableOpacity} from 'react-native';
 import cityActions from '../redux/actions/cityActions'
 import FlipCard from 'react-native-flip-card'
-
+import { useNavigation } from '@react-navigation/native';
 import {useSelector,useDispatch} from 'react-redux'
+import { LinearGradient } from 'expo-linear-gradient'
+
+
 export default function Cities() {
+	const navigation = useNavigation()
 	const cities = useSelector(store => store.cityReducer.cities)
 	const filter = useSelector(store => store.cityReducer.filter)
 	const [text, onChangeText] = useState("");
@@ -29,9 +33,14 @@ export default function Cities() {
 					<Text style={styles.title}>{city.name}</Text>
     		</ImageBackground>
 				<View style={styles.content}>
-					<Text style={styles.backTitle}>{city.continent}</Text>
-					<Text style={styles.backSubtitle}>{city.country}</Text>
+					<Text style={styles.backTitle}>{city.continent} - {city.country}</Text>
+					
 					<Text style={styles.description} numberOfLines={5}>{city.description}</Text>
+					<LinearGradient colors={['#875498', '#5f0979', '#5f0979']} style={styles.button}>
+						<TouchableOpacity onPress={() => navigation.navigate("detail",{ cityId: city._id})} >
+							<Text style={styles.buttonText}>see detail</Text>
+						</TouchableOpacity>	
+					</LinearGradient>
 					<Text style={styles.itineraries}>available itineraries: {city.itineraries.length}</Text>
 				</View>
 			</FlipCard>
@@ -79,15 +88,10 @@ const styles = StyleSheet.create({
 		fontWeight: 'bold',
 		fontSize: 20,
 		color: 'rgb(199, 210, 254)',
-		padding: 5
-	},
-	backSubtitle:{
-		fontSize: 18,
-		color: 'rgb(199, 210, 254)',
-		paddingLeft: 5
+		paddingLeft: 5,
+		paddingTop: 5,
 	},
 	description: {
-		marginTop: 5,
 		color: 'rgb(199, 210, 254)',
 		padding: 10
 	},
@@ -99,6 +103,17 @@ const styles = StyleSheet.create({
 		borderTopRightRadius: 10,
 		textAlign: 'center',
 		marginTop: 'auto'
+	},
+	button:{
+		backgroundColor: 'purple',
+		padding: 10,
+		width: '50%',
+		alignSelf: 'center',
+		borderRadius: 10,
+	},
+	buttonText:{
+		color: 'white',
+		alignSelf: 'center',
+		fontSize: 15,
 	}
-		
 });

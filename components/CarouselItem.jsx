@@ -5,7 +5,6 @@ import styles from '../styles/carousel';
 
 function CarouselItem({ item, index }, parallaxProps) {
   return (
-    <Pressable onPress={() => alert('Image description:' + item.name)}>
       <SafeAreaView style={styles.item}>
         <ParallaxImage
           //source={{ uri: item.source }} /* the source of the image */
@@ -22,9 +21,7 @@ function CarouselItem({ item, index }, parallaxProps) {
 						</Text>
 					</View>
 				</ImageBackground>
-			
-							</SafeAreaView>
-						</Pressable>
+			</SafeAreaView>	
 					);
 				}
 				

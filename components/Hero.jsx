@@ -1,13 +1,15 @@
 import React from 'react'
 import { StyleSheet, Text, View, Button, Pressable} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient'
+import { useNavigation } from '@react-navigation/native';
 
 export default function Hero() {
+	const navigation = useNavigation()
 	return (
 					<View style={styles.container}>
 						<Text style={styles.title}>MyTinerary</Text>
 						<Text style={styles.description}>Find your perfect trip, designed by insiders who know and love their cities!</Text>
-						<Pressable onPress={() => alert('hola')}>
+						<Pressable onPress={() => navigation.navigate("Cities")}>
 							<LinearGradient colors={['#2ed2c0', '#15b8a6', '#0d9388']} style={styles.button}>
 								<Text style={styles.textButton}>Dare to discover</Text>
 							</LinearGradient>

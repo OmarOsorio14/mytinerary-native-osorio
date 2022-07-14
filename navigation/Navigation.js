@@ -1,15 +1,41 @@
 import React, {useEffect} from 'react'
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {NavigationContainer} from "@react-navigation/native";
 import Home from '../screens/Home'
 import Cities from '../screens/Cities'
 import Login from '../screens/Login'
 import SignUp from '../screens/SignUp'
+import Detail from '../screens/Detail'
+
 
 import {useDispatch} from 'react-redux'
 import cityActions from '../redux/actions/cityActions'
 
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
+
+const CitiesStack = createNativeStackNavigator()
+
+const MyStack = ()=>{
+	return(
+		<CitiesStack.Navigator
+			initialRouteName='Cities List'
+			screenOptions={{
+				headerStyle: { backgroundColor: '#111827' },
+				headerTintColor: 'white',
+			}}
+		>
+			<CitiesStack.Screen
+				name="Cities List"
+				component={Cities}
+			/>
+			<CitiesStack.Screen
+				name="detail"
+				component={Detail}
+			/>
+		</CitiesStack.Navigator>
+	)
+}
 
 const Tab = createBottomTabNavigator()
 const MyTabs = ()=>{
@@ -18,16 +44,31 @@ const MyTabs = ()=>{
 				initialRouteName='Home'
 				screenOptions={{
 					tabBarActiveTintColor: 'purple',
+					headerStyle: { backgroundColor: '#111827' },
+					headerTintColor: 'white',
+					tabBarStyle: {
+						backgroundColor: '#111827',
+					},
+					
 				}}
 			>
 				<Tab.Screen name="Home" component={Home} options={{
-																													tabBarIcon: ({color, size}) =>{
-																														<MaterialCommunityIcons name="home" size={size} color="black" />
-																													}
+																													tabBarIcon: ({color, size}) =>
+																													(<MaterialCommunityIcons name="home" size={size} color={color} />)
 				}}/>
-				<Tab.Screen name="Cities" component={Cities}/>
-				<Tab.Screen name="Login" component={Login}/>
-				<Tab.Screen name="Signup" component={SignUp}/>
+				<Tab.Screen name="Cities" component={MyStack} options={{
+																													tabBarIcon: ({color, size}) =>
+																													(<MaterialCommunityIcons name="map-search" size={size} color={color} />),
+																													headerShown: false
+				}}/>
+				<Tab.Screen name="Login" component={Login} options={{
+																													tabBarIcon: ({color, size}) =>
+																													(<MaterialCommunityIcons name="login" size={size} color={color} />)
+				}}/>
+				<Tab.Screen name="Signup" component={SignUp} options={{
+																													tabBarIcon: ({color, size}) =>
+																													(<MaterialCommunityIcons name="book-account-outline" size={size} color={color} />)
+				}}/>
 			</Tab.Navigator>																											
 	)
 }
