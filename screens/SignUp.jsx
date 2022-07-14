@@ -10,12 +10,7 @@ export default function SignUp() {
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
 	const [photo, setPhoto] = useState("");
-
-
-
-
-
-
+	
 	return (
 		<View style={styles.container}>
 			<Logo />

@@ -9,16 +9,6 @@ export default function Cities() {
 	const filter = useSelector(store => store.cityReducer.filter)
 	const [text, onChangeText] = useState("");
 
-	useEffect(() => {
-		dispatch(cityActions.getCities()).then(		
-		)
-		//dispatch(countryActions.getCountries())
-		//if(localStorage.getItem('token')!==null){
-		//	const token = localStorage.getItem('token')
-		//	dispatch(userActions.verifyToken(token))
-		//}
-	
-	},[])
 	const dispatch = useDispatch()
 
 	useEffect(()=>{
@@ -46,13 +36,6 @@ export default function Cities() {
 				</View>
 			</FlipCard>
 				)}
-
-		{/*{cities.map(city => 
-		)
-		
-		
-		
-		)*/}
 		</ScrollView>
 	)
 }

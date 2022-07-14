@@ -1,27 +1,14 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, ScrollView, Image, View, ImageBackground, Dimensions} from 'react-native';
+import { StyleSheet, Text, ScrollView, View, ImageBackground, Dimensions} from 'react-native';
 import CustomSlider from '../components/CustomSlider';
-import {useDispatch,useSelector} from 'react-redux'
-import cityActions from '../redux/actions/cityActions'
+import {useSelector} from 'react-redux'
 import Hero from '../components/Hero';
-import Cities from './Cities';
 
 
 export default function Home() {
 	const cities = useSelector(store => store.cityReducer.cities)
-	useEffect(() => {
-		dispatch(cityActions.getCities()).then(		
-		)
-		//dispatch(countryActions.getCountries())
-		//if(localStorage.getItem('token')!==null){
-		//	const token = localStorage.getItem('token')
-		//	dispatch(userActions.verifyToken(token))
-		//}
 	
-		
-	},[])
-	const dispatch = useDispatch()
 	return (
 			<ScrollView style={styles.container}>
 				<ImageBackground source={require('../assets/home_background.jpg')} resizeMode="cover" style={styles.image}>
@@ -31,9 +18,6 @@ export default function Home() {
 				<StatusBar style="auto" />
 				<View>
 					<CustomSlider data={cities} />
-			</View>
-			<View style={{backgroundColor: '#111827', width: Dimensions.get('window').width, height:Dimensions.get('window').height/2}}>
-				
 			</View>
 			</ScrollView>
 	)
