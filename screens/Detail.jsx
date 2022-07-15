@@ -27,7 +27,7 @@ export default function Detail({route}) {
 			<Text style={styles.title}>{city.name}</Text>
 			<Text style={styles.description}>{city.description}</Text>
 
-			{ cityLoad ? city.itineraries.map((itinerary)=> <Itinerary itinerary={itinerary} />)
+			{ cityLoad ? city.itineraries.map((itinerary)=> <Itinerary key={itinerary._id} itinerary={itinerary} />)
 			: <ActivityIndicator />
 			}
 		</ScrollView>

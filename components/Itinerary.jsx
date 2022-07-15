@@ -8,7 +8,7 @@ export default function Itinerary({itinerary}) {
 	const navigation = useNavigation()
 	let price = [];
   for (let i = 0; i < itinerary.price; i++) {
-    price.push(<FontAwesome5 name="money-bill-wave-alt" size={24} color="#6fb32d" />);
+    price.push(<FontAwesome5 key={i} name="money-bill-wave-alt" size={24} color="#6fb32d" />);
   }
 	return (
 		<View key={itinerary._id} style={styles.itinerary}>
@@ -33,12 +33,12 @@ export default function Itinerary({itinerary}) {
 				</View>
 				<View style={styles.buttonsBox}>
 				<Button
-  				onPress={() => navigation.navigate("Activities")}
+  				onPress={() => navigation.navigate("Activities",{ activities: itinerary.activities})}
   				title="Activities"
   				color='rgb(55, 48, 163)'
 				/>
 				<Button
-  				onPress={() => navigation.navigate("Comments")}
+  				onPress={() => navigation.navigate("Comments", {comments: itinerary.comments})}
   				title="Comments"
   				color='rgb(55, 48, 163)'
 				/>

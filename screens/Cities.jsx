@@ -5,6 +5,7 @@ import FlipCard from 'react-native-flip-card'
 import { useNavigation } from '@react-navigation/native';
 import {useSelector,useDispatch} from 'react-redux'
 import { LinearGradient } from 'expo-linear-gradient'
+import { FontAwesome } from '@expo/vector-icons'; 
 
 
 export default function Cities() {
@@ -21,13 +22,17 @@ export default function Cities() {
 	
 	return (
 		<ScrollView style={styles.container}>
-			<TextInput
-        style={styles.input}
-        onChangeText={onChangeText}
-				value={text}
-				placeholder="Search city"
-      />
-			{filter.map(city =>
+			<View style={styles.searchContainer}>
+				<TextInput
+					style={styles.input}
+					onChangeText={onChangeText}
+					value={text}
+					placeholder="Search city"
+				/>
+				<FontAwesome name="search" size={24} color="rgb(5, 150, 105)" />
+			</View>
+			
+			{filter.length !== 0 ? filter.map(city =>
 				<FlipCard key={city._id}>
 				<ImageBackground source={{ uri: city.image }} resizeMode="cover" style={styles.image}>
 					<Text style={styles.title}>{city.name}</Text>
@@ -44,7 +49,7 @@ export default function Cities() {
 					<Text style={styles.itineraries}>available itineraries: {city.itineraries.length}</Text>
 				</View>
 			</FlipCard>
-				)}
+				) : <Text style={styles.error}>At the moment we do not have this destination within our offer</Text>}
 		</ScrollView>
 	)
 }
@@ -54,13 +59,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#f8f0c9',
   },
 	input:{
-		marginHorizontal: '15%',
-		marginVertical: 50,
-		width: '70%',
+		width: '80%',
 		backgroundColor: 'white',
 		borderRadius: 30,
-		paddingLeft: 10,
+		padding: 5,
 		shadowColor: 'black',
+		fontSize: 15,
+		marginRight: 5,
+	},
+	error:{
+		padding: 10,
+		textAlign: 'center',
 	},
 	image: {
 		flex: 1,
@@ -115,5 +124,12 @@ const styles = StyleSheet.create({
 		color: 'white',
 		alignSelf: 'center',
 		fontSize: 15,
-	}
+	},
+	searchContainer: {
+		marginVertical: 30,
+		flexDirection: "row",
+    flexWrap: "wrap",
+		alignItems: "center",
+		justifyContent: "center",
+	},
 });

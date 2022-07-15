@@ -1,8 +1,12 @@
 import React, {useState} from 'react'
-import { StyleSheet, Text, Button, View, TextInput, Pressable} from 'react-native';
+import { StyleSheet, Text, Button, View, TextInput, TouchableOpacity} from 'react-native';
 import Logo from '../components/Logo';
-import GoogleLogIn from '../components/GoogleLogIn';
+import { useNavigation } from '@react-navigation/native';
+
+
 export default function SignUp() {
+	const navigation = useNavigation()
+
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [confrimPassword, setConfirmPassword] = useState("");
@@ -65,9 +69,9 @@ export default function SignUp() {
 			/>
 			<View style={styles.textContainer}>
 				<Text style={styles.text}>do you already have an account created?</Text>
-				<Pressable onPress={() => alert('hola')}>
+				<TouchableOpacity onPress={() => navigation.navigate("Login")} >
 					<Text style={styles.link}>Log In</Text>		
-				</Pressable>
+				</TouchableOpacity>
 			</View>
 			
 		</View>
