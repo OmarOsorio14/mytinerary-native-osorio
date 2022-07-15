@@ -7,6 +7,8 @@ import Cities from '../screens/Cities'
 import Login from '../screens/Login'
 import SignUp from '../screens/SignUp'
 import Detail from '../screens/Detail'
+import Activities from '../screens/Activities'
+import Comments from '../screens/Comments';
 
 
 import {useDispatch} from 'react-redux'
@@ -33,6 +35,14 @@ const MyStack = ()=>{
 				name="detail"
 				component={Detail}
 			/>
+				<CitiesStack.Screen
+				name="Activities"
+				component={Activities}
+			/>
+				<CitiesStack.Screen
+				name="Comments"
+				component={Comments}
+			/>
 		</CitiesStack.Navigator>
 	)
 }
@@ -43,7 +53,7 @@ const MyTabs = ()=>{
 			<Tab.Navigator
 				initialRouteName='Home'
 				screenOptions={{
-					tabBarActiveTintColor: 'purple',
+					tabBarActiveTintColor: 'white',
 					headerStyle: { backgroundColor: '#111827' },
 					headerTintColor: 'white',
 					tabBarStyle: {
